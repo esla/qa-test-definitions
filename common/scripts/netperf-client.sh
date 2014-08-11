@@ -24,7 +24,8 @@ then
 	echo "Missing remote ip!"
 	exit 1
 fi
-
+echo `pwd`
+echo "esla"
 ifconfig -a
 ping -c 1 ${remote_ip} || exit 1
 ping -c 30 ${remote_ip} | tee ~/output.txt | ./common/scripts/netperf2LAVA.py

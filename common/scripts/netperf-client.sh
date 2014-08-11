@@ -25,6 +25,7 @@ then
 	exit 1
 fi
 echo `pwd`
+ls -al
 echo "esla"
 ifconfig -a
 ping -c 1 ${remote_ip} || exit 1

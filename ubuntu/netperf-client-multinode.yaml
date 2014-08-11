@@ -20,10 +20,6 @@ metadata:
         - beagle-xm
         - mx53loco
 
-install:
-     deps:
-         - netperf
-         - python-minimal
 params:
     ETH: eth0
 

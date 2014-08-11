@@ -19,7 +19,9 @@ metadata:
         - beaglebone-black
         - beagle-xm
         - mx53loco
-
+install:
+    deps:
+        - python
 params:
     ETH: eth0
 

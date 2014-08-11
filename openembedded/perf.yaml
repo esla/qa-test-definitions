@@ -1,0 +1,26 @@
+metadata:
+    name: perf
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Performance tests in OpenEmbedded."
+    os:
+        - openembedded
+    scope:
+        - performance
+    devices:
+        - rtsm_ve-armv8
+
+install:
+    bzr-repos:
+        - lp:~linaro-maintainers/lava-test/lava-test-perf
+
+run:
+    steps:
+        - cd lava-test-perf
+        - sudo bash -x ./run-perf-test.sh
+
+parse:
+    pattern: "^(?P<test_case_id>perf[\\w\\s-]+)\\s+:\\s+(?P<result>\\w+)"
+    fixupdict:
+        PASS: pass
+        FAIL: fail
+        Skip: skip

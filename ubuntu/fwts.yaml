@@ -1,0 +1,25 @@
+metadata:
+    name: fwts
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Ubuntu Firmware Test Suite (fwts) -  https://wiki.linaro.org/LEG/Engineering/test-acpi#Ubuntu_Firmware_test_suite"
+    maintainer:
+        - naresh.bhat@linaro.org
+    os:
+        - ubuntu
+    scope:
+        - functional
+    devices:
+        - panda
+        - panda-es
+        - arndale
+        - vexpress-a9
+        - vexpress-tc2
+        - rtsm_fvp_base-aemv8a
+
+install:
+    deps:
+        - fwts
+run:
+    steps:
+        - lava-test-case fwts --shell fwts -a
+        - lava-test-case-attach fwts results.log text/plain

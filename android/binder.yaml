@@ -1,0 +1,22 @@
+metadata:
+    name: binder
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Binder test for android."
+    os:
+        - android
+    scope:
+        - functional
+    devices:
+        - arndale
+        - panda
+        - vexpress-a9
+        - vexpress-tc2
+    maintainer:
+        - amit.pundir@linaro.org
+
+run:
+    steps:
+        - "./android/scripts/binder.sh"
+
+parse:
+    pattern: "^(?P<test_case_id>.*)=(?P<result>.*)"

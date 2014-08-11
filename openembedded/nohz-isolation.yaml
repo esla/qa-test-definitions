@@ -1,0 +1,26 @@
+metadata:
+    name: NO_HZ_FULL
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Test CPU Isolation with NOHZ and CPUSETS on ubuntu."
+    maintainer:
+        - viresh.kumar@linaro.org
+    os:
+        - ubuntu
+    scope:
+        - functional
+    devices:
+        - arndale
+
+params:
+    ISOL_CPU: 1
+    ITERATIONS: 5
+    ISOL_MIN: 10
+run:
+    steps:
+        - "common/scripts/is-cpu-isolated.sh $ISOL_CPU $ITERATIONS $ISOL_MIN"
+
+parse:
+    pattern: "^test_case_id:(?P<test_case_id>.+)\\s+result:(?P<result>\\w+)\\s+measurement:(?P<measurement>.+)\\s+units:(?P<units>.+)"
+    fixupdict:
+        PASS: pass
+        FAIL: fail

@@ -1,0 +1,33 @@
+metadata:
+    name: bootchart
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Test case that measures the boot time"
+    maintainer:
+        - Fathi Boudra <fathi.boudra@linaro.org>
+        - Milosz Wasilewski <milosz.wasilewski@linaro.org>
+    os:
+        - fedora
+    devices:
+        - arndale
+        - panda
+        - beaglebone-black
+        - beagle-xm
+        - mx53loco
+        - vexpress
+        - highbank
+    scope:
+        - performance
+
+install:
+    deps:
+        - bootchart
+        - redhat-lsb-core
+        - pybootchartgui
+
+run:
+    steps:
+        - cd fedora/scripts
+        - lava-test-case bootchartscript --shell ./bootchartscript.sh
+        - lava-test-case-attach bootchartscript bootchart.log text/plain
+        - BOOTTIME=`cat bootchart.log | grep time | awk '{print $2}'`
+        - lava-test-case boot-time --result pass --measurement $BOOTTIME --units seconds
